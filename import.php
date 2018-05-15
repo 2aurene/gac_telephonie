@@ -50,6 +50,9 @@ if(isset($_POST['submit_import'])){
 				$file_form_errors[] = 'Lʼextension du fichier nʼest pas authorisée.';
 			} else {
 				// déplacement du fichier
+				if(!is_dir($upload_directory)){
+					mkdir($upload_directory);
+				}
 				$file_name = substr($file_data['name'], 0, $point_position);
 				$destination = $upload_directory.$file_name.'_'.date('YmdHi').'.'.$file_ext;
 				move_uploaded_file($file_data['tmp_name'], $destination);
